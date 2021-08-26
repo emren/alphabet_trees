@@ -1,16 +1,20 @@
-# alphabet_trees
+## 1. Description
+Alphabet Tree is an algorthm based application where two random alphabet trees has to be created and then unique letters has to be shon separately
 
-A new Flutter project.
+## 2. Chosen Technology
+Flutter Channel stable, 2.2.3, implemented null safe  **sdk: ">=2.12.0 <3.0.0"**
 
-## Getting Started
+## 3. Project Structure
+As a best practice, UI and logic has been separated. This is achieved by collecting ui files under ui folder and logic under core folder.
 
-This project is a starting point for a Flutter application.
+## 4. State Management
+For the state management **Provider** with **ChangeNotifier** has been implemented in this project. Changenotifier is Flutters own state solution, a wrapper for inherited widget, where it has notifylistener() function to update the widgets.
 
-A few resources to get you started if this is your first Flutter project:
+## 5. Packages Used
+**provider** For state management
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 6. Tests
+Unit tests are under test folder. Flutters own flutter_test package has been used.
+```
+alphabet_provider_unit_test.dart
+```

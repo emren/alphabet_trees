@@ -1,3 +1,4 @@
+import 'package:alphabet_trees/core/models/alphabet_tree_model.dart';
 import 'package:alphabet_trees/core/providers/alphabet_provider/alphabet_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +22,7 @@ class ButtonRow extends StatelessWidget {
               color: Colors.blue,
               child: Text('Create first tree'),
               onPressed: () {
-                alphabetProvider.generateFirstList();
+                alphabetProvider.generateFirstTree();
               },
             ),
           ),
@@ -32,7 +33,7 @@ class ButtonRow extends StatelessWidget {
               color: Colors.blue,
               child: Text('Create second tree'),
               onPressed: () {
-                alphabetProvider.generateSecondList();
+                alphabetProvider.generateSecondTree();
               },
             ),
           ),
@@ -45,6 +46,49 @@ class ButtonRow extends StatelessWidget {
               onPressed: () {
                 alphabetProvider.findUniqueCharactersInAlphabeticalOrder();
               },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AlphabetTree extends StatelessWidget {
+  //final String tree;
+  final AlphabetTreeModel tree;
+  const AlphabetTree({Key? key, required this.tree}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                child: Text(tree.firstRow.toString()),
+              ),
+            ],
+          ),
+          Container(
+            height: 100,
+            width: 300,
+            child: Center(
+              child: ListView.builder(
+
+                scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: tree.secondRow!.length,
+                  itemBuilder: (context, i) {
+                    return Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: CircleAvatar(
+                        child: Text(tree.secondRow![i].toString()),
+                      ),
+                    );
+                  }),
             ),
           ),
         ],

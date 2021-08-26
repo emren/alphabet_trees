@@ -7,38 +7,38 @@ void main() {
 
     test('First Tree should start empty', () {
       AlphabetProvider alphabetProvider = AlphabetProvider();
-      String? firstTree = alphabetProvider.firstTree;
+      String? firstTree = alphabetProvider.firstTreeString;
       bool empty = firstTree == null;
       expect(empty, true);
     });
 
     test('Second Tree should start empty', () {
       AlphabetProvider alphabetProvider = AlphabetProvider();
-      String? secondTree = alphabetProvider.secondTree;
+      String? secondTree = alphabetProvider.secondTreeString;
       bool empty = secondTree == null;
       expect(empty, true);
     });
 
     test('Generate First Tree method should create a non null String', () {
       AlphabetProvider alphabetProvider = AlphabetProvider();
-      alphabetProvider.generateFirstList();
-      String? firstTree = alphabetProvider.firstTree;
+      alphabetProvider.generateFirstTree();
+      String? firstTree = alphabetProvider.firstTreeString;
       bool empty = firstTree != null;
       expect(empty, true);
     });
 
     test('Generate Second Tree method should create a non null String', () {
       AlphabetProvider alphabetProvider = AlphabetProvider();
-      alphabetProvider.generateSecondList();
-      String? secondTree = alphabetProvider.secondTree;
+      alphabetProvider.generateSecondTree();
+      String? secondTree = alphabetProvider.secondTreeString;
       bool empty = secondTree != null;
       expect(empty, true);
     });
 
     test('Find Unique Characters should produce a non empty List', () {
       AlphabetProvider alphabetProvider = AlphabetProvider();
-      alphabetProvider.generateFirstList();
-      alphabetProvider.generateSecondList();
+      alphabetProvider.generateFirstTree();
+      alphabetProvider.generateSecondTree();
       var uniqueList = alphabetProvider.findUniqueCharactersInAlphabeticalOrder();
       bool empty = uniqueList != null;
       expect(empty, true);
