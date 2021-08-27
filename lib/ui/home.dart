@@ -19,36 +19,35 @@ class _HomeState extends State<Home> {
   late List<String> unique;
   @override
   void initState() {
-    var alphabetProvider = Provider.of<AlphabetProvider>(context, listen: false);
+    var alphabetProvider =
+        Provider.of<AlphabetProvider>(context, listen: false);
     alphabetProvider.generateFirstTree();
     alphabetProvider.generateSecondTree();
     firstTreeModel = alphabetProvider.firstTreeModel!;
-    //secondTreeModel = alphabetProvider.secondTreeModel!;
+    secondTreeModel = alphabetProvider.secondTreeModel!;
     unique = alphabetProvider.findUniqueCharactersInAlphabeticalOrder();
     super.initState();
   }
 
-  getSelection(int select){
-      switch(select){
-        case 0:
-          return AlphabetTree(tree: firstTreeModel);
-        case 1:
-          return AlphabetTree(tree: secondTreeModel);
-        case 2:
-          return Text(unique.toString());
-
+  getSelection(int select) {
+    switch (select) {
+      case 0:
+        return AlphabetTree(tree: firstTreeModel);
+      case 1:
+        return AlphabetTree(tree: secondTreeModel);
+      case 2:
+        return Padding(
+          padding: const EdgeInsets.all(30),
+          child: Text(unique.toString()),
+        );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    var alphabetProvider = Provider.of<AlphabetProvider>(context);
-
-
     return Scaffold(
       body: SafeArea(
         child: Container(
-
           child: Column(
             children: [
               getSelection(selection),
@@ -75,7 +74,9 @@ class _HomeState extends State<Home> {
                       color: Colors.blue,
                       child: Text('Create second tree'),
                       onPressed: () {
-                        selection = 1;
+                        setState(() {
+                          selection = 1;
+                        });
                       },
                     ),
                   ),
@@ -84,16 +85,18 @@ class _HomeState extends State<Home> {
                     width: 100,
                     child: MaterialButton(
                       color: Colors.blue,
-                      child: Text('Compare'),
+                      child: Text('Find unique chars'),
                       onPressed: () {
-                        selection = 2;
+                        setState(() {
+                          selection = 2;
+                        });
                       },
                     ),
                   ),
                 ],
               ),
             ],
-          )
+          ),
         ),
       ),
     );

@@ -55,7 +55,6 @@ class ButtonRow extends StatelessWidget {
 }
 
 class AlphabetTree extends StatelessWidget {
-  //final String tree;
   final AlphabetTreeModel tree;
   const AlphabetTree({Key? key, required this.tree}) : super(key: key);
 
@@ -77,8 +76,7 @@ class AlphabetTree extends StatelessWidget {
             width: 300,
             child: Center(
               child: ListView.builder(
-
-                scrollDirection: Axis.horizontal,
+                  scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemCount: tree.secondRow!.length,
                   itemBuilder: (context, i) {
@@ -86,6 +84,24 @@ class AlphabetTree extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       child: CircleAvatar(
                         child: Text(tree.secondRow![i].toString()),
+                      ),
+                    );
+                  }),
+            ),
+          ),
+          Container(
+            height: 100,
+            width: 300,
+            child: Center(
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: tree.thirdRow.length,
+                  itemBuilder: (context, i) {
+                    return Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: CircleAvatar(
+                        child: Text(tree.thirdRow[i].toString()),
                       ),
                     );
                   }),

@@ -1,7 +1,5 @@
 import 'dart:math';
-
 import 'package:alphabet_trees/core/models/alphabet_tree_model.dart';
-
 import '../base_provider.dart';
 
 class AlphabetProvider extends BaseProvider {
@@ -17,44 +15,47 @@ class AlphabetProvider extends BaseProvider {
       length, (_) => _chars.codeUnitAt(_random.nextInt(_chars.length))));
 
   String? generateFirstTree() {
-    var number = _random.nextInt(10) + 10;
-    var generated = _getRandomString(number);
+    var treeLength = _random.nextInt(10) + 10;
+    var generated = _getRandomString(treeLength);
     firstTreeString = generated;
-    print(firstTreeString);
     firstTreeModel = AlphabetTreeModel();
     firstTreeModel?.firstRow = firstTreeString![0];
     int secondRowLength = _random.nextInt(5) + 1;
-    firstTreeModel?.secondRow = firstTreeString!.substring(1, secondRowLength + 1);
-    int remainingLength = number - secondRowLength;
-    print(secondRowLength);
-    print(remainingLength);
-    var remaining = firstTreeString!
-        .substring(secondRowLength +1  , number)
-        .split('');
-    print(remaining);
+    firstTreeModel?.secondRow =
+        firstTreeString!.substring(1, secondRowLength + 1);
+    var remaining = firstTreeString!.substring(secondRowLength + 1, treeLength);
     int end = 0;
+    List<String> thirdRow = [];
     for (var i = 0; i < secondRowLength; i++) {
-
-      int length = _random.nextInt(4);
-      print('length'+length.toString());
+      int length = _random.nextInt(3);
+      String subString = remaining.substring(end, end + length);
+      thirdRow.add(subString);
       end = end + length;
-      print('end'+end.toString());
-      // String subString = firstTreeString!
-      //     .substring(secondRowLength , length);
-      // print(subString);
-      print(length);
-
     }
-    print(firstTreeModel!.firstRow);
-    print(firstTreeModel!.secondRow);
+    firstTreeModel?.thirdRow = thirdRow;
     return firstTreeString;
   }
 
   String? generateSecondTree() {
-    var number = _random.nextInt(10) + 10;
-    var generated = _getRandomString(number);
+    var treeLength = _random.nextInt(10) + 10;
+    var generated = _getRandomString(treeLength);
     secondTreeString = generated;
-    print(secondTreeString);
+    secondTreeModel = AlphabetTreeModel();
+    secondTreeModel?.firstRow = secondTreeString![0];
+    int secondRowLength = _random.nextInt(5) + 1;
+    secondTreeModel?.secondRow =
+        secondTreeString!.substring(1, secondRowLength + 1);
+    var remaining =
+        secondTreeString!.substring(secondRowLength + 1, treeLength);
+    int end = 0;
+    List<String> thirdRow = [];
+    for (var i = 0; i < secondRowLength; i++) {
+      int length = _random.nextInt(3);
+      String subString = remaining.substring(end, end + length);
+      thirdRow.add(subString);
+      end = end + length;
+    }
+    secondTreeModel?.thirdRow = thirdRow;
     return secondTreeString;
   }
 
@@ -73,7 +74,7 @@ class AlphabetProvider extends BaseProvider {
     uniqueList.sort((a, b) {
       return a.compareTo(b);
     });
-    print(uniqueList);
+    print('Unique Characters: ' + uniqueList.toString());
     return uniqueList;
   }
 }
